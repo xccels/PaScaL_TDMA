@@ -1,6 +1,8 @@
-# PaScaL_TDMA 2.0
+# PaScaL_TDMA 2.0: Parallel and Scalable Library for TriDiagonal Matrix Algorithm
+![](https://img.shields.io/badge/Fortran-Fortran_90-blue.svg)
+[![](https://img.shields.io/badge/docs-passing-green.svg)](https://xccels.github.io/PaScaL_TDMA)
+![](https://img.shields.io/badge/license-MIT_License-yellow.svg)
 
-Parallel and Scalable Library for TriDiagonal Matrix Algorithm
 
 PaScaL_TDMA provides an efficient and scalable computational procedure to solve many tridiagonal systems in multi-dimensional partial differential equations. The modified Thomas algorithm proposed by Laszlo et al.(2016) and the newly designed communication scheme have been used to reduce the communication overhead in solving many tridiagonal systems.
 
