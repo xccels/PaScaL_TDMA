@@ -72,7 +72,7 @@ The divide-and-conquer method of [Laszlo et al.(2016)](reference_page.html) is u
 
 ### PaScaL_TDMA algorithm
 <!-- \image html al3_PaScaL_TDMA.png width=55% -->
-<div class="darkmode_inverted_image">al3_PaScaL_TDMA.png width=55%</div>
+<div class="darkmode_inverted_image">\image html al3_PaScaL_TDMA.png width=55%</div>
 
 
   1. Transforming the partitioned sub-matrices in the tridiagonal systems into modified sub-matrices 
@@ -82,7 +82,9 @@ The divide-and-conquer method of [Laszlo et al.(2016)](reference_page.html) is u
   5. Updating the other unknowns
 
 
-\image html eq_1.png width=80%
+<!-- \image html eq_1.png width=80% -->
+<div class="darkmode_inverted_image">\image html eq_1.png width=80%</div>
+
 
 **Step 1.** Each computing core transforms the partitioned sub-matrices in the tridiagonal systems of equations into the modified forms by applying the modified Thomas algorithm of [Laszlo et al.(2016)](reference_page.html).
 
