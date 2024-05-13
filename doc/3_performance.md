@@ -5,6 +5,7 @@ Performance                         {#perf_page}
 
 # Vectorization
 
+
 <!-- Vectorization vs. no vectorization -->
 <div class="darkmode_inverted_image">\image html perf_vectorization.png width=50%</div>
 
@@ -13,6 +14,7 @@ Performance                         {#perf_page}
 - A multicore processor-level vectorization application reduces wall-clock time to process a \\(512^3\\) grid by 42% and improves performance by 72%.
 
 - Tested in [CPU environment](perf_page.html#experimental-setup) proposed by [Kim et al. (2021)](reference_page.html)
+
 
 # CPU Parallel benchmark
 
@@ -28,8 +30,10 @@ Performance                         {#perf_page}
 
 - The scalability of parallelization, as exemplified by OpenMP and MPI, is optimal when the number of grids is high (\\(512^3\\)). However, when the grid number is low (\\(64^3\\)), the parallel performance is compromised.
 
+
 ## MPI w/ OpenMP hybrid parallelization
 <div class="darkmode_inverted_image">\image html perf_parallel_mpi_openmp_hybrid.png width=45%</div>
+
 
 <!-- 64^3 격자에 대해 총 코어수 64개로 고정하고, MPI+OpenMP hybrid병렬 성능을 측정. 적절한 OpenMP 스레드에 대해 hybrid 병렬화가 우수하며, 스레드 수를 2개로 두었을 때, MPI 병렬화에 비해 34%의 성능 향상을 보임. -->
 
@@ -37,11 +41,13 @@ Performance                         {#perf_page}
 - Hybrid parallelization represents an effective approach for appropriate OpenMP threads, and when the number of threads is set to two, it shows a 34% performance improvement compared to MPI parallelization.
 
 
+
 ## MPI: PaScaL_TDMA_single vs. PaScaL_TDMA_many
 <!-- ## MPI -->
 <!-- Figure 6 -->
 <!-- 설명/테스트 장비 -->
 <div class="darkmode_inverted_image">\image html perf_parallel_cpu_mpi.png width=80%</div>
+
 
 - The strong scalability of `PaScaL_TDMA_single` and `PaScaL_TDMA_many` for the tridiagonal systems of the three-dimensional array. 
 - The results for the fixed grid size of \\(512^3\\) and \\(2,048^3\\) are plotted in blue dashed and red solid lines, respectively. 
@@ -55,7 +61,6 @@ Performance                         {#perf_page}
 <!-- CPU Setting -->
 - The scalability of PaScaL_TDMA_many for solving the three-dimensional heat equation. The dashed lines represent the ideal speedup. (a) Strong scalability and (b) weak scalability. 
 - The analysis was based on the total execution time, including not only the time for solving the tridiagonal systems but also the processing time for constructing the coefficient matrices and right-hand sides of the tridiagonal systems.
-
 - Details of the benchmark are presented by [Kim et al. (2021)](reference_page.html)
 
 # GPU Parallel benchmark 
