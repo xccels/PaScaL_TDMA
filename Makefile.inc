@@ -8,6 +8,7 @@ FC = mpiifort
 
 # FLAG  = -O3 -fPIC -cpp
 # FLAG += -g
+# FLAG += -qopenmp 
 # FLAG += -fcheck=all -warn-all 
 # FLAG += -fp-model=precise 
 # FLAG += -check bounds
