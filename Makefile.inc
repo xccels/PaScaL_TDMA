@@ -4,7 +4,7 @@
 ###############################################################################
 # Intel MPI
 
-FC = mpiifort 
+# FC = mpiifort 
 
 # FLAG  = -O3 -fPIC -cpp
 # FLAG += -g
@@ -19,20 +19,21 @@ FC = mpiifort
 ###############################################################################
 # Nvidia & OpenMPI
 
-#FC = $(MPI)/bin/mpifort 
-#FC = mpifort 
+# FC = $(MPI)/bin/mpifort 
+FC = mpifort 
 
-FLAG  = -fcheck=all -Og -g -cpp -Wall -fbacktrace -pedantic -fopenmp ## Intel
-#FLAG  = -O3 -fPIC -cpp ## nvidia
-#FLAG += -tp=skylake 
+FLAG  = -fcheck=all -O2 -g -cpp -Wall -fbacktrace -pedantic -fopenmp
+# FLAG  = -fcheck=all -Og -g -cpp -Wall -fbacktrace -pedantic -fopenmp ## Intel
+# FLAG  = -O3 -fPIC -cpp ## nvidia
+# FLAG += -tp=skylake 
 
 ###############################################################################
 # To use CUDA
 # PaScaL_TDMA is compiled for CUDA also.
 ###############################################################################
 
-#USE_CUDA = yes
-#FLAG += -mp:multicore -Mcuda -Minfo=accel 
-#FLAG += -DUSE_NVTX
+# USE_CUDA = yes
+# FLAG += -mp:multicore -Mcuda -Minfo=accel 
+# FLAG += -DUSE_NVTX
 
 

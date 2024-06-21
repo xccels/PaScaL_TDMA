@@ -149,7 +149,7 @@ subroutine field_file_write(myrank, nprocs, theta_sub)
     integer :: ddtype_data_write_send, request_send                             ! DDT from MPI_Type_create_subarray
     integer, allocatable, dimension(:) :: ddtype_data_write_recv, request_recv  ! DDT from MPI_Type_create_subarray
     integer :: i, j, k, ierr
-    integer :: status(MPI_STATUS_SIZE)
+    integer :: status(MPI_STATUS_SIZE), statuses(MPI_STATUS_SIZE, nprocs)
 
     ! Singe task IO: each process writes to its own output file.
     write (filename, '("mpi_Tfield_sub_af",5I1,".PLT" )' ) int(myrank/10000)-int(myrank/100000)*10 &
@@ -161,6 +161,8 @@ subroutine field_file_write(myrank, nprocs, theta_sub)
     
     write(myrank,*) 'VARIABLES="X","Y","Z","THETA"'
     write(myrank,*) 'zone t="',1,'"','i=',nx_sub+1,'j=',ny_sub+1,'k=',nz_sub+1
+
+    print *, myrank, shape(x_sub), shape(y_sub), shape(z_sub)
 
     do k=1,nz_sub-1
         do j=1,ny_sub-1
@@ -242,7 +244,7 @@ subroutine field_file_write(myrank, nprocs, theta_sub)
 
     call MPI_Wait(request_send, status, ierr)
     if(myrank == 0 ) then
-        call MPI_Waitall(nprocs, request_recv, MPI_STATUSES_IGNORE, ierr)
+        call MPI_Waitall(nprocs, request_recv, statuses, ierr)
     endif
 
     ! Write gathered data to a single file.

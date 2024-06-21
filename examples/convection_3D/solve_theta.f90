@@ -726,7 +726,7 @@ contains
         integer :: i, j, k
         integer :: ierr, request(4)
         integer :: nprocs
-        integer :: istat(MPI_STATUS_SIZE)
+        integer :: statuses(MPI_STATUS_SIZE, 4)
                 
         !X-Direction        
         !$cuf kernel do(2) <<< *,* >>>
@@ -759,7 +759,7 @@ contains
                             comm_1d_x%west_rank, 222, comm_1d_x%mpi_comm, request(3), ierr)
             call MPI_Isend( sbuf_x1, (ny_sub+1)*(nz_sub+1), MPI_DOUBLE_PRECISION, &
                             comm_1d_x%east_rank, 222, comm_1d_x%mpi_comm, request(4), ierr)
-            call MPI_Waitall(4, request, MPI_STATUSES_IGNORE, ierr)
+            call MPI_Waitall(4, request, statuses, ierr)
         endif
 
         !$cuf kernel do(2) <<< *,* >>>
@@ -810,7 +810,7 @@ contains
                             comm_1d_y%west_rank, 444, comm_1d_y%mpi_comm, request(3), ierr)
             call MPI_Isend( sbuf_y1, (nx_sub+1)*(nz_sub+1), MPI_DOUBLE_PRECISION, &
                             comm_1d_y%east_rank, 444, comm_1d_y%mpi_comm, request(4), ierr)
-            call MPI_Waitall(4, request, MPI_STATUSES_IGNORE, ierr)
+            call MPI_Waitall(4, request, statuses, ierr)
         endif
 
         if(comm_1d_y%west_rank.ne.MPI_PROC_NULL) then
@@ -866,7 +866,7 @@ contains
                             comm_1d_z%west_rank, 666, comm_1d_z%mpi_comm, request(3), ierr)
             call MPI_Isend( sbuf_z1, (nx_sub+1)*(ny_sub+1), MPI_DOUBLE_PRECISION, &
                             comm_1d_z%east_rank, 666, comm_1d_z%mpi_comm, request(4), ierr)
-            call MPI_Waitall(4, request, MPI_STATUSES_IGNORE, ierr)
+            call MPI_Waitall(4, request, statuses, ierr)
         endif
 
         if(comm_1d_z%west_rank.ne.MPI_PROC_NULL) then

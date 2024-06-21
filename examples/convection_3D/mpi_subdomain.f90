@@ -228,6 +228,7 @@ module mpi_subdomain
 
         integer :: ierr
         integer :: request(12)
+        integer :: statuses(MPI_STATUS_SIZE,12)
 
         ! Update the ghostcells in the x-direction using derived datatypes and subcommunicator.
         call MPI_Isend(theta_sub,1, ddtype_sendto_E  , comm_1d_x%east_rank, 111, comm_1d_x%mpi_comm, request(1), ierr)
@@ -247,7 +248,7 @@ module mpi_subdomain
         call MPI_Isend(theta_sub,1, ddtype_sendto_B  , comm_1d_z%west_rank, 222, comm_1d_z%mpi_comm, request(11), ierr)
         call MPI_Irecv(theta_sub,1, ddtype_recvfrom_F, comm_1d_z%east_rank, 222, comm_1d_z%mpi_comm, request(12), ierr)
         
-        call MPI_Waitall(12, request, MPI_STATUSES_IGNORE, ierr)
+        call MPI_Waitall(12, request, statuses, ierr)
         
     end subroutine mpi_subdomain_ghostcell_update
 
