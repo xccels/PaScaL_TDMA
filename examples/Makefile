@@ -7,24 +7,28 @@ EXE1= ex1_single.out
 EXE2= ex2_many_2D.out
 EXE3= ex3_many_thread_3D.out
 EXE4= ex4_many_rhs_3D.out
+EXE5= ex5_many_3D.out
 
-topology = mpi_topology_2D.o 
+topology = mpi_topology.o
 
 main1 = tdm_single.o
 main2 = tdm_many_2D.o
 main3 = tdm_many_thread_3D.o
 main4 = tdm_many_rhs_3D.o
+main5 = tdm_many_3D.o
 
 OBJS1   = $(topology) $(main1)
 OBJS2   = $(topology) $(main2)
 OBJS3   = $(topology) $(main3)
 OBJS4   = $(topology) $(main4)
+OBJS5   = $(topology) $(main5)
 
-all:$(OBJS1) $(OBJS2) $(OBJS3) $(OBJS4)
+all:$(OBJS1) $(OBJS2) $(OBJS3) $(OBJS4) $(OBJS5)
 	$(FC) $(FLAG) $(OBJS1) -o $(EXE1) -I$(INC) -L$(LIB)
 	$(FC) $(FLAG) $(OBJS2) -o $(EXE2) -I$(INC) -L$(LIB)
 	$(FC) $(FLAG) $(OBJS3) -o $(EXE3) -I$(INC) -L$(LIB)
 	$(FC) $(FLAG) $(OBJS4) -o $(EXE4) -I$(INC) -L$(LIB)
+	$(FC) $(FLAG) $(OBJS5) -o $(EXE5) -I$(INC) -L$(LIB)
 	cd convection_3D;make all
 
 %.o: %.f90
@@ -34,8 +38,9 @@ all:$(OBJS1) $(OBJS2) $(OBJS3) $(OBJS4)
 %(EXE2)	: %(OBJS2)
 %(EXE3)	: %(OBJS3)
 %(EXE4)	: %(OBJS4)
+%(EXE5)	: %(OBJS5)
 
 clean:
-	rm -f *.mod *.o *__genmod.f90 $(EXE1) $(EXE2) $(EXE3) $(EXE4)
+	rm -f *.mod *.o *__genmod.f90 $(EXE1) $(EXE2) $(EXE3) $(EXE4) $(EXE5)
 	cd convection_3D;make clean
 

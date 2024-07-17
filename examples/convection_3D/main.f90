@@ -162,8 +162,6 @@ subroutine field_file_write(myrank, nprocs, theta_sub)
     write(myrank,*) 'VARIABLES="X","Y","Z","THETA"'
     write(myrank,*) 'zone t="',1,'"','i=',nx_sub+1,'j=',ny_sub+1,'k=',nz_sub+1
 
-    print *, myrank, shape(x_sub), shape(y_sub), shape(z_sub)
-
     do k=1,nz_sub-1
         do j=1,ny_sub-1
             do i=1,nx_sub-1
