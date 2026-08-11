@@ -1,0 +1,27 @@
+# =============================================================================
+# PaScaL_TDMA - Python GPU environment
+#
+#   Create:    conda env create -f environment.yml
+#   Activate:  conda activate pascal-tdma-gpu
+#
+# conda provides only python + pip; the packages are installed as pip wheels.
+# mpi4py is intentionally not listed here: it must be built from source against
+# the same CUDA-aware MPI used to build the wrapper library, e.g.
+#   OMPI_CC=gcc MPICC=$(which mpicc) pip install --no-binary=mpi4py mpi4py
+# =============================================================================
+name: pascal-tdma-gpu
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.11
+  - pip
+  - pip:
+      - numpy
+      - scipy               # reference solutions for example/poisson1d_tdma.py
+      - cupy-cuda12x        # CuPy for CUDA 12.x
+      # Pin the JIT compiler (NVRTC) to CUDA 12 so CuPy does not pick up a
+      # system CUDA 13 toolkit.
+      - nvidia-cuda-nvrtc-cu12
+      - nvidia-nvjitlink-cu12

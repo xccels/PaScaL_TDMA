@@ -47,3 +47,6 @@ doc_build
 
 # backup
 .history
+
+# scripts
+*.sh
